@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BankApp</string>
+    <string name="app_logo">App logo</string>
+    <stirng name="login">Login</stirng>
+    <string name="password_input">Password</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="signup">Sign up</string>
+    <string name="signin">Sign in</string>
+    <string name="login_button">Log in</string>
+    <string name="register_button">Register</string>
+</resources>
