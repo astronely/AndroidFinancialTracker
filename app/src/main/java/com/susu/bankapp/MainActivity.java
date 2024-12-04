@@ -7,14 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView navigationView;
 
     private HomeFragment homeFragment;
-    private IncomeFragment incomeFragment;
-    private ExpenseFragment expenseFragment;
+    private IncomesFragment incomeFragment;
+    private ExpensesFragment expenseFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         homeFragment = new HomeFragment();
-        incomeFragment = new IncomeFragment();
-        expenseFragment = new ExpenseFragment();
+        incomeFragment = new IncomesFragment();
+        FloatingActionButton incomeActionButton = findViewById(R.id.action_button_income);
+
+        expenseFragment = new ExpensesFragment();
         setFragment(homeFragment);
 
         navigationView = findViewById(R.id.bottomNavigation);
@@ -51,5 +54,11 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
+    }
+
+    public void addFragment(int to, Fragment fragment) {
+        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();;
+        transaction.add(to, fragment);
+        transaction.commit();
     }
 }

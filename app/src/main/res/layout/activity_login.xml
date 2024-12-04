@@ -27,7 +27,7 @@
         android:background="@drawable/rounded_edittext"
         android:backgroundTint="@color/dark_gray"
         android:hint="@string/login_button"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:padding="12dp"
         android:textColor="@color/light_gray"
         android:textColorHint="@color/dark_gray_hint" />
