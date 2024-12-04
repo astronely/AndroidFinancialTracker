@@ -60,8 +60,6 @@ public class RegistrationActivity extends AppCompatActivity {
             });
         });
 
-        signIn.setOnClickListener(view -> {
-            startActivity(new Intent(this, LoginActivity.class));
-        });
+        signIn.setOnClickListener(view -> startActivity(new Intent(this, LoginActivity.class)));
     }
 }

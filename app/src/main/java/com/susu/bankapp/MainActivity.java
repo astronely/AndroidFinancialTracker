@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         incomeFragment = new IncomesFragment();
-        FloatingActionButton incomeActionButton = findViewById(R.id.action_button_income);
 
         expenseFragment = new ExpensesFragment();
         setFragment(homeFragment);
