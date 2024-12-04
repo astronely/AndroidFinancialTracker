@@ -12,6 +12,8 @@
     <string name="incomes_title">Список доходов</string>
     <string name="wallets_title">Доступные средства</string>
 
+    <string name="action_button_text">Добавить</string>
+
     <string name="nav_item_1">Доходы</string>
     <string name="nav_item_2">Главная</string>
     <string name="nav_item_3">Расходы</string>

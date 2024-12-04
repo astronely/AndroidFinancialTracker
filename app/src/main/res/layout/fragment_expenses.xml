@@ -20,7 +20,7 @@
     <!-- Список последних операций -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,6 +76,19 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/action_button_expenses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:backgroundTint="@color/purple"
+        android:src="@drawable/ic_plus_button"
+        android:contentDescription="@string/action_button_text"
+        android:layout_margin="16dp"
+        app:fabSize="mini"
+        app:pressedTranslationZ="12dp"
+        app:elevation="24dp"/>
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="match_parent"-->
