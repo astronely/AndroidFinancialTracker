@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "777502977619",
+    "project_id": "financialtracker-28bf7",
+    "storage_bucket": "financialtracker-28bf7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777502977619:android:b9d29e7f102dd8f0bba0a6",
+        "android_client_info": {
+          "package_name": "com.susu.bankapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC65Ye8BcuuqsMYo0Xtaaze-t83xXkoB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

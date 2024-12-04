@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">BankApp</string>
     <string name="app_logo">App logo</string>
-    <stirng name="login">Login</stirng>
     <string name="password_input">Password</string>
     <string name="forgot_password">forgot password?</string>
     <string name="signup">Sign up</string>
     <string name="signin">Sign in</string>
     <string name="login_button">Log in</string>
     <string name="register_button">Register</string>
+    <string name="last_operations_title">Последние операции</string>
+    <string name="wallets_title">Доступные средства</string>
+
+    <string name="nav_item_1">Доходы</string>
+    <string name="nav_item_2">Главная</string>
+    <string name="nav_item_3">Расходы</string>
 </resources>

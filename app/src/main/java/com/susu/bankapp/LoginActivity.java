@@ -1,52 +1,46 @@
 package com.susu.bankapp;
 
-import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private EditText inputLogin;
     private EditText inputPassword;
-    private Button btnReg;
-    private TextView signIn;
+    private Button btnLogin;
+    private TextView signUp;
+    private TextView forgotPassword;
 
     private FirebaseAuth auth;
-//    private Dialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        registration();
-    }
-
-    private void registration() {
-        inputLogin = findViewById(R.id.login_input);
-        inputPassword = findViewById(R.id.password_input);
-        btnReg = findViewById(R.id.register_button);
-        signIn = findViewById(R.id.sign_in);
+        setContentView(R.layout.activity_login);
 
         auth = FirebaseAuth.getInstance();
-//        progressDialog = new Dialog(this);
 
-        btnReg.setOnClickListener(view -> {
+        login();
+    }
+
+    private void login() {
+        inputLogin = findViewById(R.id.login_input);
+        inputPassword = findViewById(R.id.password_input);
+        btnLogin = findViewById(R.id.login_button);
+        signUp = findViewById(R.id.sign_up);
+        forgotPassword = findViewById(R.id.forgot_password);
+
+        btnLogin.setOnClickListener(view -> {
             String login = inputLogin.getText().toString().trim();
             String password = inputPassword.getText().toString().trim();
 
@@ -59,18 +53,20 @@ public class RegistrationActivity extends AppCompatActivity {
                 inputPassword.setError("Password is required");
                 return;
             }
-            auth.createUserWithEmailAndPassword(login, password).addOnCompleteListener(task -> {
+
+            auth.signInWithEmailAndPassword(login, password).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Toast.makeText(this, "Successfully registered!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Successfully logged in", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(this, MainActivity.class));
                 } else {
-                    Toast.makeText(this, "Registration is failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
                 }
             });
+
         });
 
-        signIn.setOnClickListener(view -> {
-            startActivity(new Intent(this, LoginActivity.class));
+        signUp.setOnClickListener(view -> {
+            startActivity(new Intent(this, RegistrationActivity.class));
         });
     }
 }

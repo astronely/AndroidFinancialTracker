@@ -6,4 +6,13 @@
     <color name="dark_gray_hint">#757575</color>
     <color name="light_gray">#E0E0E0</color>
     <color name="purple">#7E57C2</color>
+    <color name="title_text">#B4B4B4</color>
+    <color name="main_text">#A0A0A0</color>
+    <color name="secondary_text">#8C8C8C</color>
+    <color name="date_text">#666666</color>
+
+    <color name="nav_item_text">#997EC8</color>
+    <color name="nav_item_text_active">#7E57C2</color>
+    <color name="nav_item_tint">#9A86C5</color>
+    <color name="nav_background">#070512</color>
 </resources>
