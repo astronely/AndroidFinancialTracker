@@ -8,7 +8,6 @@
     android:padding="16dp">
 
     <!-- Login Input -->
-
     <ImageView
         android:id="@+id/logo"
         android:layout_width="match_parent"
@@ -78,6 +77,4 @@
         android:text="@string/signup"
         android:textColor="@color/purple"
         android:textSize="14sp" />
-
-
 </LinearLayout>
