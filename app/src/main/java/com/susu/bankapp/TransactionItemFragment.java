@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
-public class ExpenseFragment extends Fragment {
+public class TransactionItemFragment extends Fragment {
 
-    public ExpenseFragment() {
+    public TransactionItemFragment() {
         // Required empty public constructor
     }
 
@@ -17,7 +17,7 @@ public class ExpenseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_expense, container, false);
+        return inflater.inflate(R.layout.fragment_transaction_item, container, false);
     }
 
 }

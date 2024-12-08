@@ -27,4 +27,9 @@
     <string name="input_button_add">Добавить</string>
     <string name="input_hint_date">Выберите дату</string>
     <string name="input_label_date">Дата</string>
+    <string name="wallet">Кошелек</string>
+    <string name="start_date">Начало периода</string>
+    <string name="end_date">Конец периода</string>
+    <string name="text_wallet">Кошелек</string>
+    <string name="wallet_balance_title">Баланс:</string>
 </resources>

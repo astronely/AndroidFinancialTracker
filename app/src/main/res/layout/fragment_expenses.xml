@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,75 +36,99 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
-            android:backgroundTint="@color/purple"
-            android:src="@drawable/ic_plus_button"
-            android:contentDescription="@string/action_button_text"
             android:layout_margin="12dp"
+            android:backgroundTint="@color/purple"
+            android:contentDescription="@string/action_button_text"
+            android:src="@drawable/ic_plus_button"
+            app:elevation="24dp"
             app:fabSize="mini"
-            app:pressedTranslationZ="12dp"
-            app:elevation="24dp"/>
+            app:pressedTranslationZ="12dp" />
 
     </LinearLayout>
 
-    <!-- Список последних операций -->
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/fragment_expenses_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:paddingTop="10dp">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_date"
+                android:textColor="@color/input_field_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/start_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_background"
-                android:elevation="0dp"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:focusable="false"
+                android:hint="@string/input_hint_date"
+                android:textColor="@color/input_field_text"
+                android:textColorHint="@color/input_field_hint" />
+        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Оплата: -500 ₽"
-                    android:textColor="@color/main_text"
-                    android:textSize="16sp" />
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Дата: 03.12.2024"
-                    android:textColor="@color/date_text"
-                    android:textSize="14sp" />
-            </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
-            <LinearLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="2"
+            android:gravity="start"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_date"
+                android:textColor="@color/input_field_text" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/end_date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/rounded_background"
-                android:elevation="0dp"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:focusable="false"
+                android:hint="@string/input_hint_date"
+                android:textColor="@color/input_field_text"
+                android:textColorHint="@color/input_field_hint" />
+        </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Оплата: -1500 ₽"
-                    android:textColor="@color/main_text"
-                    android:textSize="16sp" />
+    </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Дата: 02.12.2024"
-                    android:textColor="@color/date_text"
-                    android:textSize="14sp" />
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recycler_view_expenses"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </LinearLayout>

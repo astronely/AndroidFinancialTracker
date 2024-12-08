@@ -37,6 +37,7 @@ dependencies {
     implementation platform(libs.firebase.bom)
     implementation libs.firebase.analytics
     implementation libs.firebase.database
+    implementation libs.firebaseui.firebase.ui.database
     implementation libs.firebase.auth
     implementation libs.firebase.core
     implementation libs.cardview.v7

@@ -3,16 +3,12 @@ package com.susu.bankapp;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
-
-    private BottomNavigationView navigationView;
 
     private HomeFragment homeFragment;
     private IncomesFragment incomeFragment;
@@ -30,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         expenseFragment = new ExpensesFragment();
         setFragment(homeFragment);
 
-        navigationView = findViewById(R.id.bottomNavigation);
+        BottomNavigationView navigationView = findViewById(R.id.bottomNavigation);
         navigationView.setSelectedItemId(R.id.nav_main);
 
         navigationView.setOnItemSelectedListener(item -> {
@@ -54,11 +50,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_frame, fragment);
         fragmentTransaction.commit();
-    }
-
-    public void addFragment(int to, Fragment fragment) {
-        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();;
-        transaction.add(to, fragment);
-        transaction.commit();
     }
 }
