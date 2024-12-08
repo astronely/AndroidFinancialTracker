@@ -114,7 +114,7 @@ public class IncomesFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        datePickerDialog = new DatePickerDialog(requireActivity(), dateSetListener, year, month, day);
+        datePickerDialog = new DatePickerDialog(requireActivity(), R.style.CustomDatePickerDialog, dateSetListener, year, month, day);
         edtDate.setOnClickListener(v -> {
             openDatePicker(view);
         });
@@ -201,13 +201,43 @@ public class IncomesFragment extends Fragment {
         });
     }
 
+    private void changeBalance(Data data, String key, int position) {
+        walletDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    double currentBalance = snapshot.getValue(Double.class);
+                    if (currentBalance - data.getSum() >= 0) {
+                        increaseBalance(-data.getSum());
+
+                        incomeDatabase.child(key).removeValue()
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Swipe Delete", "Item deleted successfully.");
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Swipe Delete", "Error deleting item", e);
+                                    adapter.notifyItemChanged(position);
+                                });
+                    } else {
+                        adapter.notifyItemChanged(position);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error fetching balance", error.toException());
+            }
+        });
+    }
+
     private void showDateRangePickerDialog() {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog startDatePicker = new DatePickerDialog(requireActivity(),
+        DatePickerDialog startDatePicker = new DatePickerDialog(requireActivity(), R.style.CustomDatePickerDialog,
                 (view, year1, monthOfYear, dayOfMonth) -> {
                     startDate = new GregorianCalendar(year1, monthOfYear, dayOfMonth).getTime();
                     firstDatePicker.setText(makeDateString(dayOfMonth, monthOfYear+1, year1));
@@ -222,7 +252,7 @@ public class IncomesFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog endDatePicker = new DatePickerDialog(requireActivity(),
+        DatePickerDialog endDatePicker = new DatePickerDialog(requireActivity(), R.style.CustomDatePickerDialog,
                 (view, year1, monthOfYear, dayOfMonth) -> {
                     endDate = new GregorianCalendar(year1, monthOfYear, dayOfMonth).getTime();
                     secondDatePicker.setText(makeDateString(dayOfMonth, monthOfYear+1, year1));
@@ -290,7 +320,7 @@ public class IncomesFragment extends Fragment {
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false; // Перемещение не требуется
+                return false;
             }
 
             @Override
@@ -298,15 +328,9 @@ public class IncomesFragment extends Fragment {
                 int position = viewHolder.getBindingAdapterPosition();
                 String key = adapter.getRef(position).getKey();
 
-                incomeDatabase.child(key).removeValue()
-                        .addOnSuccessListener(aVoid -> {
-                            Log.d("Swipe Delete", "Item deleted successfully.");
-                        })
-                        .addOnFailureListener(e -> {
-                            Log.e("Swipe Delete", "Error deleting item", e);
-                        });
                 Data data = adapter.getItem(position);
-                increaseBalance(-data.getSum());
+
+                changeBalance(data, key, position);
             }
         });
 
@@ -315,6 +339,4 @@ public class IncomesFragment extends Fragment {
         adapter.startListening();
         Log.d("Adapter", "Adapter is OK!");
     }
-
-
 }
