@@ -117,7 +117,7 @@ public class ExpensesFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        datePickerDialog = new DatePickerDialog(requireActivity(), dateSetListener, year, month, day);
+        datePickerDialog = new DatePickerDialog(requireActivity(), R.style.CustomDatePickerDialog, dateSetListener, year, month, day);
         edtDate.setOnClickListener(v -> {
             openDatePicker(view);
         });
@@ -191,7 +191,7 @@ public class ExpensesFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog startDatePicker = new DatePickerDialog(requireActivity(),
+        DatePickerDialog startDatePicker = new DatePickerDialog(requireActivity(), R.style.CustomDatePickerDialog,
                 (view, year1, monthOfYear, dayOfMonth) -> {
                     startDate = new GregorianCalendar(year1, monthOfYear, dayOfMonth).getTime();
                     firstDatePicker.setText(makeDateString(dayOfMonth, monthOfYear+1, year1));
@@ -206,7 +206,7 @@ public class ExpensesFragment extends Fragment {
         int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog endDatePicker = new DatePickerDialog(requireActivity(),
+        DatePickerDialog endDatePicker = new DatePickerDialog(requireActivity(), R.style.CustomDatePickerDialog,
                 (view, year1, monthOfYear, dayOfMonth) -> {
                     endDate = new GregorianCalendar(year1, monthOfYear, dayOfMonth).getTime();
                     secondDatePicker.setText(makeDateString(dayOfMonth, monthOfYear+1, year1));
