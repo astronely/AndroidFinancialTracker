@@ -11,7 +11,7 @@
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_color</item>
         <item name="colorAccent">@color/light_gray</item>
-        <item name="windowActionBar">true</item>
+        <item name="android:windowLightStatusBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 

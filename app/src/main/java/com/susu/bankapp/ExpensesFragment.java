@@ -150,11 +150,11 @@ public class ExpensesFragment extends Fragment {
             String id = expenseDatabase.push().getKey();
             Data data = new Data(id, amount, type, date);
             if (id != null) {
-                expenseDatabase.child(id).setValue(data);
-                decreaseBalance(amount);
+//                expenseDatabase.child(id).setValue(data);
+                addExpense(id, data, amount);
                 Log.d("ExpenseData Info", sum + " " + type + " " + date);
                 Log.d("ExpenseData Info", id);
-                Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getActivity(), "ID error", Toast.LENGTH_SHORT).show();
                 Log.e("IncomeData Error", "ID is not found");
@@ -216,6 +216,40 @@ public class ExpensesFragment extends Fragment {
         endDatePicker.show();
     }
 
+    private void addExpense(String id, Data data, double amountToDecrease) {
+        walletDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    double currentBalance = snapshot.getValue(Double.class);
+
+                    double updatedBalance = currentBalance - amountToDecrease;
+                    if (updatedBalance < 0) {
+                        Toast.makeText(getActivity(), "Not enough money", Toast.LENGTH_SHORT).show();
+                    } else {
+                        walletDatabase.setValue(updatedBalance)
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Firebase", "Balance updated successfully");
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firebase", "Failed to update balance", e);
+                                });
+                        expenseDatabase.child(id).setValue(data);
+                        Toast.makeText(getActivity(), "Data added", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getActivity(), "Not enough money", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error fetching balance", error.toException());
+            }
+        });
+
+    }
+
     private void decreaseBalance(double amountToDecrease) {
         walletDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -226,15 +260,15 @@ public class ExpensesFragment extends Fragment {
                     double updatedBalance = currentBalance - amountToDecrease;
                     if (updatedBalance < 0) {
                         Toast.makeText(getActivity(), "Not enough money", Toast.LENGTH_SHORT).show();
-                        return;
+                    } else {
+                        walletDatabase.setValue(updatedBalance)
+                                .addOnSuccessListener(aVoid -> {
+                                    Log.d("Firebase", "Balance updated successfully");
+                                })
+                                .addOnFailureListener(e -> {
+                                    Log.e("Firebase", "Failed to update balance", e);
+                                });
                     }
-                    walletDatabase.setValue(updatedBalance)
-                            .addOnSuccessListener(aVoid -> {
-                                Log.d("Firebase", "Balance updated successfully");
-                            })
-                            .addOnFailureListener(e -> {
-                                Log.e("Firebase", "Failed to update balance", e);
-                            });
                 } else {
                     Toast.makeText(getActivity(), "Not enough money", Toast.LENGTH_SHORT).show();
                 }
